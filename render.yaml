@@ -2,5 +2,6 @@ services:
   - type: web
     name: credence-ai
     runtime: python
+    plan: free
     buildCommand: uv sync --locked
     startCommand: uv run streamlit run app.py --server.address 0.0.0.0 --server.port $PORT
