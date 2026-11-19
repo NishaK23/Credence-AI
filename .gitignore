@@ -1,0 +1,18 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Additional exclusions
+.venv*/
+venv/
+.env
+.streamlit/secrets.toml
+__pycache__/
+*.pyc

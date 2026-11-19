@@ -1,0 +1,26 @@
+[project]
+name = "credit-risj"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "NishaK23", email = "nishak236614@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "joblib>=1.6.0",
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.5",
+    "pandas>=3.1.1",
+    "scikit-learn==1.6.1",
+    "shap>=0.54.1",
+    "streamlit>=1.67.0",
+    "xgboost>=3.4.1",
+]
+
+[project.scripts]
+credit-risj = "credit_risj:main"
+
+[build-system]
+requires = ["uv_build>=0.13.6,<0.14.0"]
+build-backend = "uv_build"
