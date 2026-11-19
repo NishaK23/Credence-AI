@@ -26,183 +26,312 @@ st.set_page_config(
 # =========================================================
 
 
+
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --green: #174D38;
+    --green-dark: #103B2B;
+    --green-mid: #286B4E;
+    --green-light: #EAF3ED;
+    --white: #FFFFFF;
+}
 
 .stApp {
-    background: #F3F5F1;
-    color: #26352D;
+    background-color: #FFFFFF;
+    background-image:
+        radial-gradient(circle at 5% 12%, rgba(23,77,56,.07), transparent 25%),
+        radial-gradient(circle at 95% 75%, rgba(23,77,56,.06), transparent 25%);
+    color: var(--green);
     font-family: 'DM Sans', sans-serif;
 }
 
 .block-container {
     max-width: 1200px;
-    padding-top: 2rem;
+    padding-top: 1.5rem;
     padding-bottom: 3rem;
 }
 
 .brand {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 23px;
-    font-weight: 700;
-    color: #244536;
-    letter-spacing: -0.8px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 29px;
+    font-weight: 800;
+    color: var(--green);
+    letter-spacing: -1.4px;
 }
 
 .brand span {
-    color: #8A9D83;
+    color: var(--green-mid);
 }
 
-.hero {
-    background: #E4EBE2;
-    padding: 42px;
-    border-radius: 18px;
-    margin: 25px 0 35px 0;
-    border: 1px solid #D4DED1;
-}
-
-.hero-tag {
-    color: #66816B;
+.nav-label {
+    text-align: right;
+    color: var(--green);
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 2px;
-    margin-bottom: 16px;
+    padding-top: 12px;
+}
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(120deg, #103B2B 0%, #174D38 65%, #286B4E 100%);
+    padding: 48px 45px;
+    border-radius: 22px;
+    margin: 28px 0 38px;
+    color: #FFFFFF;
+    box-shadow: 0 16px 40px rgba(16,59,43,.15);
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    border: 1px solid rgba(255,255,255,.13);
+    border-radius: 50%;
+    right: -90px;
+    top: -170px;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 50%;
+    right: 20px;
+    bottom: -190px;
+}
+
+.hero-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(220px, .8fr);
+    gap: 35px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-tag {
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 17px;
 }
 
 .hero h1 {
-    color: #244536;
-    font-family: 'Playfair Display', serif;
-    font-size: 39px;
-    line-height: 1.2;
-    margin: 0 0 14px 0;
+    display: block;
+    color: #FFFFFF !important;
+    font-family: 'Manrope', sans-serif;
+    font-size: 46px;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -1px;
+    margin: 0 0 18px 0;
+    overflow-wrap: normal;
+}
+.hero h1 span {
+    display: block;
+    color: #FFFFFF !important;
+    margin-top: 8px;
+    font-size: 30px;
+    line-height: 1.3;
 }
 
 .hero p {
-    color: #5E7063;
+    color: #FFFFFF !important;
     font-size: 15px;
     line-height: 1.8;
-    max-width: 720px;
+    max-width: 590px;
     margin: 0;
 }
 
+.hero-brand {
+    font-family: 'Manrope', sans-serif;
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin-top: 25px;
+}
+
+.hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 230px;
+}
+
+.hero-visual svg {
+    width: 100%;
+    max-width: 270px;
+    height: auto;
+}
+
 .section-heading {
-    color: #244536;
-    font-size: 22px;
-    font-weight: 700;
+    color: var(--green);
+    font-family: 'Manrope', sans-serif;
+    font-size: 23px;
+    font-weight: 800;
     margin-bottom: 5px;
 }
 
 .section-description {
-    color: #78877B;
+    color: var(--green-mid);
     font-size: 13px;
     margin-bottom: 20px;
 }
 
 div[data-testid="stVerticalBlockBorderWrapper"] {
     background: #FFFFFF;
-    border: 1px solid #E0E6DE;
-    border-radius: 14px;
+    border: 1px solid #D5E5DA;
+    border-radius: 16px;
+    padding: 12px;
+    box-shadow: 0 5px 20px rgba(23,77,56,.035);
 }
 
 .stNumberInput label,
 .stSelectbox label {
-    color: #405849 !important;
-    font-weight: 600 !important;
+    color: var(--green) !important;
+    font-weight: 700 !important;
     font-size: 13px !important;
 }
 
 .stNumberInput input,
 .stSelectbox div[data-baseweb="select"] > div {
-    background: #FAFBF9 !important;
-    border-color: #DCE4DA !important;
-    border-radius: 8px !important;
-    color: #26352D !important;
+    background: #FFFFFF !important;
+    border: 1px solid #BBD4C4 !important;
+    border-radius: 9px !important;
+    color: var(--green) !important;
+    min-height: 43px;
+}
+
+.stNumberInput input:focus,
+.stSelectbox div[data-baseweb="select"] > div:focus-within {
+    border-color: var(--green) !important;
+    box-shadow: 0 0 0 2px #EAF3ED !important;
 }
 
 .stButton > button {
-    border-radius: 9px;
-    height: 47px;
+    border-radius: 10px;
+    min-height: 48px;
     font-family: 'DM Sans', sans-serif;
     font-weight: 700;
+    transition: all .2s ease;
 }
 
 .stButton > button[kind="primary"] {
-    background: #315B45;
-    color: white;
-    border: 1px solid #315B45;
+    background: var(--green);
+    color: #FFFFFF;
+    border: 1px solid var(--green);
 }
 
 .stButton > button[kind="primary"]:hover {
-    background: #244536;
-    border-color: #244536;
+    background: var(--green-dark);
+    border-color: var(--green-dark);
+    transform: translateY(-2px);
 }
 
 .stButton > button[kind="secondary"] {
-    background: #E4EBE2;
-    color: #315B45;
-    border: 1px solid #CFDCCD;
+    background: #FFFFFF;
+    color: var(--green);
+    border: 1px solid #A9C8B5;
+}
+
+.stButton > button[kind="secondary"]:hover {
+    background: var(--green-light);
+    color: var(--green);
+    border-color: var(--green);
 }
 
 .result-card {
-    background: white;
-    border: 1px solid #E0E6DE;
+    background: #FFFFFF;
+    border: 1px solid #C8DDCF;
+    border-top: 4px solid var(--green);
     border-radius: 14px;
     padding: 23px;
     min-height: 125px;
+    box-shadow: 0 5px 18px rgba(23,77,56,.05);
 }
 
 .result-label {
-    color: #78877B;
+    color: var(--green-mid);
     font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
 }
 
 .result-value {
-    color: #244536;
-    font-size: 26px;
-    font-weight: 700;
+    color: var(--green);
+    font-family: 'Manrope', sans-serif;
+    font-size: 25px;
+    font-weight: 800;
     margin-top: 12px;
 }
 
-.risk-high {
-    background: #F8EAE7;
-    border: 1px solid #E8C9C1;
+.risk-high, .risk-low {
+    background: var(--green-light);
+    border: 1px solid #BBD4C4;
+    border-left: 5px solid var(--green);
     border-radius: 13px;
     padding: 22px;
-    color: #934B40;
-}
-
-.risk-low {
-    background: #E7F0E7;
-    border: 1px solid #CBDDCA;
-    border-radius: 13px;
-    padding: 22px;
-    color: #386347;
+    color: var(--green);
 }
 
 .risk-title {
+    color: var(--green);
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 800;
     margin-bottom: 8px;
 }
 
 .risk-description {
+    color: var(--green);
     font-size: 13px;
     line-height: 1.7;
 }
 
+.stProgress > div > div > div > div {
+    background-color: var(--green);
+}
+
+.stProgress > div > div {
+    background-color: var(--green-light);
+}
+
 .footer {
     text-align: center;
-    color: #89968B;
+    color: var(--green);
     font-size: 12px;
-    padding-top: 20px;
+    font-weight: 600;
+    padding-top: 22px;
+    letter-spacing: .6px;
 }
 
 hr {
-    border-color: #E0E6DE;
+    border-color: #D5E5DA;
+}
+
+@media(max-width: 700px) {
+    .hero {
+        padding: 30px 23px;
+    }
+    .hero-layout {
+        grid-template-columns: 1fr;
+    }
+    .hero h1 {
+        font-size: 35px;
+    }
+    .hero-visual {
+        min-height: 150px;
+    }
 }
 </style>
 """, unsafe_allow_html=True)
@@ -418,50 +547,43 @@ def assess_application():
 # 8. TOP NAVIGATION
 # =========================================================
 
-header_left, header_right = st.columns([3, 1])
+st.markdown(
+    '<div style="height: 35px;"></div>',
+    unsafe_allow_html=True
+)
+
+header_left, header_right = st.columns([3, 2])
 
 with header_left:
-
     st.markdown(
-        '<div class="brand">◈ CREDENCE <span>AI</span></div>',
+        '<div class="brand">◈ CREDENCE AI</div>',
         unsafe_allow_html=True
     )
 
 with header_right:
-
     st.markdown(
-        '<div style="text-align:right; color:#8B7868; '
-        'font-size:12px; padding-top:10px;">'
-        'FINANCIAL RISK INTELLIGENCE</div>',
+        '<div class="nav-label">FINANCIAL RISK INTELLIGENCE</div>',
         unsafe_allow_html=True
     )
 
+st.markdown(
+    '<div style="height: 12px;"></div>',
+    unsafe_allow_html=True
+)
 
 st.divider()
+
 
 
 # =========================================================
 # 9. HERO SECTION
 # =========================================================
 
-st.markdown("""
-<div class="hero">
+st.markdown(
+    "<h1 style='color:green;'>CREDENCE AI TEST</h1>",
+    unsafe_allow_html=True
+)
 
-    <div class="hero-tag">
-        INTELLIGENT CREDIT ASSESSMENT
-    </div>
-
-    <h1>Make smarter lending decisions.</h1>
-
-    <p>
-        Evaluate applicant information using machine learning,
-        calibrated default probabilities and an optimized
-        decision threshold. Gain a clearer understanding of
-        potential credit risk before making lending decisions.
-    </p>
-
-</div>
-""", unsafe_allow_html=True)
 
 
 # =========================================================
@@ -688,48 +810,21 @@ if result is not None:
     st.markdown("**Default Probability Indicator**")
 
     st.progress(probability)
-
     if prediction == 1:
 
-        st.markdown("""
-        <div class="risk-high">
-
-            <div class="risk-title">
-                Higher Default Risk Identified
-            </div>
-
-            <div class="risk-description">
-                The model classifies this applicant as having
-                a higher probability of loan default based on
-                the selected decision threshold. Further
-                financial review is recommended.
-            </div>
-
-        </div>
-        """, unsafe_allow_html=True)
+        st.error(
+            "Higher Default Risk Identified — The model classifies "
+            "this applicant as having a higher probability of loan default. "
+            "Further financial review is recommended."
+        )
 
     else:
 
-        st.markdown("""
-        <div class="risk-low">
-
-            <div class="risk-title">
-                Lower Default Risk Identified
-            </div>
-
-            <div class="risk-description">
-                The model classifies this applicant as having
-                a lower probability of loan default based on
-                the selected decision threshold.
-            </div>
-
-        </div>
-        """, unsafe_allow_html=True)
-
-    st.caption(
-        "This machine learning assessment is a decision-support "
-        "tool and should not be treated as an automatic lending decision."
-    )
+         
+        st.success(
+            "Lower Default Risk Identified — The model classifies "
+            "this applicant as having a lower probability of loan default."
+        )
 
 
 # =========================================================
@@ -738,16 +833,11 @@ if result is not None:
 
 st.divider()
 
+st.divider()
+
 st.markdown("""
 <div class="footer">
-
     CREDENCE AI · FINANCIAL RISK INTELLIGENCE
-
-    <br><br>
-
-    Machine Learning &nbsp; • &nbsp;
-    Probability Calibration &nbsp; • &nbsp;
-    Threshold Optimization
-
+   
 </div>
 """, unsafe_allow_html=True)
